@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Main {
 
@@ -6,6 +7,7 @@ public class Main {
         int[] weight = {1,2,3,4,5};
         int[] value = {1,4,4,5,7} ;
         int total = 9;
+        ArrayList<Integer> trace = new ArrayList<>();
         int[][] res = new int[5][10];
         //intitialize 1st col as value 0;
         for(int i=0;i<5;i++){
@@ -39,6 +41,23 @@ public class Main {
             }
             System.out.println();
         }
+
+        // tracing the solution
+        int row = 4,col=9;
+        while(row>0){
+            if(res[row][col] == res[row-1][col]){
+                //means we have not included this row
+                row = row-1;
+                continue;
+            }else{
+                //means we have included this row
+                trace.add(weight[row]);
+                col = col - weight[row];
+                row = row -1;
+            }
+        }
+        System.out.println();
+        System.out.println(trace);
     }
 
 }
